@@ -6,7 +6,9 @@ const StorePage: React.FC<{}> = (props) => {
   return (
     <>
       <div>StorePage</div>
-      {items.map}
+      {items.map((item) => {
+        return <Card item={item} />;
+      })}
     </>
   );
 };

@@ -8,11 +8,11 @@ interface IProdcuts {
   imgUrl: string;
 }
 
-const Card: React.FC<IProdcuts> = (props: IProdcuts) => {
+const Card: React.FC<IProdcuts> = ({ id, name, price, imgUrl }) => {
   return (
     <Cardbs className="m-16">
       <Cardbs.Body>
-        <Cardbs.Img src={props.imgUrl} />
+        <Cardbs.Img src={imgUrl} />
       </Cardbs.Body>
     </Cardbs>
   );

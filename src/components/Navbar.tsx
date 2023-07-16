@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Navbar as NavbarBS, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useShoppingCardContext } from '../context/AddCardContext';
 
 const Navbar: React.FC = () => {
+  const { getTotalItems } = useShoppingCardContext();
+
   return (
     <NavbarBS sticky={'top'} className="shadow-sm bg-white mb-3">
       <Container>
@@ -41,7 +44,7 @@ const Navbar: React.FC = () => {
               transform: 'translate(25%, 25%)',
             }}
           >
-            {1}
+            {getTotalItems()}
           </div>
         </Button>
       </Container>

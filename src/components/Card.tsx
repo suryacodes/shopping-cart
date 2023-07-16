@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, Card as Cardbs } from 'react-bootstrap';
+import { useShoppingCardContext } from '../context/AddCardContext';
 import { formatCurrency } from '../utilities/format-currency';
 interface IProdcuts {
   id: number;
@@ -9,7 +10,14 @@ interface IProdcuts {
 }
 
 const Card: React.FC<IProdcuts> = ({ id, name, price, imgUrl }) => {
-  const [quantity, setQuantity] = React.useState(0);
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCardContext();
+
+  const quantity = getItemQuantity(id);
 
   return (
     <Cardbs key={id} className="mt-2">
@@ -21,8 +29,10 @@ const Card: React.FC<IProdcuts> = ({ id, name, price, imgUrl }) => {
           </span>
           <span className="fs-6 ms-2 text-muted">{formatCurrency(price)}</span>
         </Cardbs.Title>
-        {quantity === 1 ? (
-          <Button className="w-100">+ Add To Cart</Button>
+        {quantity === 0 ? (
+          <Button onClick={() => increaseCartQuantity(id)} className="w-100">
+            + Add To Cart
+          </Button>
         ) : (
           <div
             className="d-flex align-items-center flex-column"
@@ -32,13 +42,17 @@ const Card: React.FC<IProdcuts> = ({ id, name, price, imgUrl }) => {
               className="d-flex align-items-center justify-content-center"
               style={{ gap: '.5rem' }}
             >
-              <Button>-</Button>
+              <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
               <div>
                 <span className="fs-3">{quantity}</span> in cart
               </div>
-              <Button>+</Button>
+              <Button onClick={() => increaseCartQuantity(id)}>+</Button>
             </div>
-            <Button variant="danger" size="sm">
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => removeFromCart(id)}
+            >
               Remove
             </Button>
           </div>

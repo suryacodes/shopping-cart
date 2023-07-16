@@ -1,7 +1,14 @@
 import * as React from 'react';
+import { Card } from 'react-bootstrap';
+import items from '../data/items.json';
 
-const StorePage: React.FC = () => {
-  return <div>StorePage</div>;
+const StorePage: React.FC<{}> = (props) => {
+  return (
+    <>
+      <div>StorePage</div>
+      {items.map}
+    </>
+  );
 };
 
 export default StorePage;

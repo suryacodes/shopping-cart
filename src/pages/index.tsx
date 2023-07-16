@@ -1,5 +1,3 @@
-import AboutPage from './About';
-import HomePage from './Home';
-import StorePage from './Store';
-
-export { AboutPage, StorePage, HomePage };
+export { default as AboutPage } from './About';
+export { default as HomePage } from './Home';
+export { default as StorePage } from './Store';
